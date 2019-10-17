@@ -20,19 +20,63 @@
     />
     <link rel="stylesheet" href="style.css" />
     <title>Work Day Scheduler</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
   </head>
+  <style> 
+      textarea {
+        width: 700px;
+        height: 100px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 0px;
+        background-color: rgb(252, 249, 249);
+        font-size: 16px;
+        resize: none;
+      }
+      button {
+        width: 80px;
+        height: 100px;
+      }
+      #aa {
+        font-size:20px;
+        padding: 15px 25px 0px 25px;
+        border: 1px solid #ccc;
+      }
+      </style>
 <!-- ------------------------------------------------------- -->
   <body>
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
+
     </header>
 
     <div class="container">
       <!-- Timeblocks go here -->
 
-      <div id = "empty-div"> </div>
+ <!--      <div id= "date"> </div>
+      <div id= "textArea"> </div>
+      <div id= "button"> </div> -->
+
+      <div class= "row">  <span id= "aa"></span>  <span id="bb"></span>  <span id= "cc"></span>
+      </div>
+   
+
+
+
+        
+  
+  <!-- --------------------------------------------------------- -->
+    <!-- <script src="./moment/moment.min.js"></script> -->
+    <!-- <script> moment().format();</script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src= "./schedulerScript.js"></script>  
+  </body>
+</html>
 
 <!--       <div class = "todoInput">
 
@@ -48,11 +92,9 @@
           <button type="button" id="inputButton" class ="btn btn-primary btn-lg">button</button>
       </div> -->
 
+<!--  <div class="input-group mb-3">
 
-
-        <div class="input-group mb-3">
-
-          <div class="input-group-prepend">
+          <div class="input-group-prepend" id= "row">
             <span class="input-group-text">9AM</span>
             </div>            
 
@@ -65,13 +107,5 @@
 
         </div>
 
-    </div>
-  
-  <!-- --------------------------------------------------------- -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src= "./schedulerScript.js"></script>  
-  </body>
-</html>
-
+    </div> -->
 
