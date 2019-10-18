@@ -8,10 +8,8 @@ $(document).ready(function(){
 
   console.log("screwbge");
 
-  var timeOption = ["9AM","10AM","11AM","12AM","1PM","2PM","3PM","4PM","5PM"];
-
-  // for (var i = 0; i < timeOption.length; i++){
-    
+  var timeOption = ["9AM","10AM","11AM","12AM","1PM","2PM","3PM","4PM","5PM"];  
+  var currentTime = 0;
 /*     var question = document.createElement("h1");
     //console.log(questions);
     question.textContent = questions[quesIndex].title;
@@ -26,39 +24,50 @@ $(document).ready(function(){
 /* }); */
 
 // a. function to build scheduler Rows (function buildRows) --> loop, moment.js
-function buildRows() {
+function buildRows(firstRow) {
   // build HTML elements row
-  // TODO - finish
+  // TODO - finish  
+
+      var time = $("<div>");
+      time.attr("data-timeOption", timeOption[0]);
+      time.text(timeOption[0]);
+      $("#aa").append(time);
+
+    /*   var scribble = $("<div>").html();
+      scribble.attr(textarea, "<textarea/>");
+      $("#bb").append(scribble); */
+
+      var scribble = $("<textarea/>");
+      $("#bb").append(scribble); 
+
+      var button = $("<button>");
+      $("#cc").append(button);  
 }
-  var time = $("<div>");
-  time.attr("data-timeOption", timeOption[0]);
-  time.text(timeOption[0]);
-  $("#aa").append(time);
 
-/*   var scribble = $("<div>").html();
-  scribble.attr(textarea, "<textarea/>");
-  $("#bb").append(scribble); */
-
-  var scribble = $("<textarea/>");
-  $("#bb").append(scribble); 
-  
-  var button = $("<button>");
-  $("#cc").append(button);
+    for (var i = 0; i < timeOption.length; i++){
+      var x = $(fisrtRow);
+      $(".row").append(x);
+} 
 
 // b. Set date at top of page (function showTodaysDate) --> moment.js
 function showTodaysDate() {
   // TODO - finish
 }
+
 // c. Save button event handler (function saveRow) --> uses localstorage
 function saveRow() {
   // TODO - finish
+
+
 }
+
 // d. Change row styles (function updateRowStyle) --> moment.js
 function updateRowStyle() {
   // TODO - finish
   // i. on page load, check current time (hour) against rows in scheduler
   // ii. update style for those that are past hours, present hour, future hours
 }
+
 buildRows();
 
 
