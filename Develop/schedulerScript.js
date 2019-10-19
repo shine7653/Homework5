@@ -15,27 +15,27 @@ $(document).ready(function(){
 
         var row = $("<div class='row'>");
 
+        var timeSpan = $("<span>");
         var time = $("<div>");
         time.attr("data-timeOption", timeOption[i]);
-        time.text(timeOption[i]);
-        // time.addclass(timeClass);
-        var timeSpan = $("<span>");
+        time.addClass("time");
+        time.text(timeOption[i]);        
         timeSpan.append(time);
-        // $("#aa").append(time);
-
-      /*   var scribble = $("<div>").html();
-        scribble.attr(textarea, "<textarea/>");
-        $("#bb").append(scribble); */
-
-        var scribble = $("<textarea/>");
+        // <span>  <div data-timeoption="10AM" class="time">9AM</div>  </span>
+        
         var userInput = $("<span>");
+        userInput.addClass("textSpace");
+        var scribble = $("<textarea/>");
+        scribble.addClass("scribble");        
         userInput.append(scribble);
-        // $("#bb").append(scribble); 
+        // <span class="textSpace">  <textarea class="scribble" id=startTime></textarea>  </span>
 
-        var button = $("<button>");
-        var saveBtn = $("<span>");
-        saveBtn.append(button);
-        // $("#cc").append(button); 
+        var saveBtn = $("<button>");
+        saveBtn.addClass("button");
+        // var saveBtn = $("<span>");
+        // saveBtn.append(button);
+        // <button class="button"> </button>
+
         row.append(timeSpan,userInput,saveBtn);
         $(".container").append(row);
   }
@@ -48,16 +48,21 @@ $(document).ready(function(){
 
   // c. Save button event handler (function saveRow) --> uses localstorage
   function saveRow() {
-    console.log(acea);
-    /*   $("saveBtn").click(
+
+      $("saveBtn").click(
         function(){
-
-        var contents = $("userInput").val();
-        localStorage.setItem("setValue", JSON.stringify(contents));
-
-        var value = JSON.parse(localStorage.getItem("setValue"));        
-        // userInput.innerHTML = value;
-      }) */
+          event.preventDefault();
+         
+          var contents = $(".scribble").val();
+          
+          localStorage.setItem("setValue", JSON.stringify(contents));
+           
+          var value = JSON.parse(localStorage.getItem("setValue"));      
+           
+          userInput.innerHTML = value;
+         
+          console.log("test"); 
+      }) 
   }
 
   // d. Change row styles (function updateRowStyle) --> moment.js
@@ -68,7 +73,7 @@ $(document).ready(function(){
   }
 
 buildRows();
-// saveRow();
+saveRow();
 
 /* 
 var emailInput = document.querySelector("#email");        
