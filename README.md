@@ -10,4 +10,4 @@
 
 2. How to make a forloop with that?
 
-
+<img src="Capture/20191018_205224_04commit.png" width="60%" height="60%">
