@@ -15,10 +15,16 @@ $(document).ready(function () {
 
         var row = $("<div class='row'>");
 
+        // var timeSpan = $("<span>");
         var time = $("<div>");
         time.attr("data-timeOption", timeOption[i]);
         time.addClass("time");
         time.text(timeOption[i]);
+        // row.append(time);
+        // <span>  <div data-timeoption="10AM" class="time">9AM</div>  </span>
+
+        // var userInput = $("<span>");
+        // userInput.addClass("textSpace");
         
         var scribble = $("<textarea/>");
         scribble.addClass("scribble");
@@ -26,15 +32,20 @@ $(document).ready(function () {
         console.log(localStorage.getItem(timeOption[i])); 
         // getItem  -- gets the contents in the textarea using the key from (timeOption[i])
         // "localStorage.getItem(timeOption[i])" -- get the value stored before, and print it out on console
-
         var storageItem = localStorage.getItem(timeOption[i]);
         //If store item is not null, pass the storageItem
         if (storageItem !== null) {
             scribble.val(storageItem);          
         }
+        
+        // row.append(scribble);
+        // <span class="textSpace">  <textarea class="scribble" id=startTime></textarea>  </span>
 
         var saveBtn = $("<button>");
         saveBtn.addClass("add");
+        // var saveBtn = $("<span>");
+        // saveBtn.append(button);
+        // <button class="add"> </button>
 
         row.append(time);
         row.append(scribble)
@@ -67,10 +78,70 @@ $(document).ready(function () {
         
         // console - application - put something and I can see that
 
+
+
+        // var contents = $(".scribble").val();  
+        // localStorage.setItem("todo", JSON.stringify(contents));  
+        // $(this).siblings(".textSpace").val(value);
+        // // event();
+
+        // var aa = JSON.parse(localStorage.getItem("todo"));
+        //  $(this).sibling(".textSpace").val(aa);
       });
   }
  
  
     buildRows();
 
+
+    
+
+    
+
+  // b. Set date at top of page (function showTodaysDate) --> moment.js
+  // function showTodaysDate() {
+
+  // }
+
+  // d. Change row styles (function updateRowStyle) --> moment.js
+  // function updateRowStyle() {
+
+  //   // i. on page load, check current time (hour) against rows in scheduler
+  //   // ii. update style for those that are past hours, present hour, future hours
+  // }
+
+  
+
+
+  /* 
+  var emailInput = document.querySelector("#email");        
+  var userEmailSpan = document.querySelector("#user-email");
+  var signUpButton = document.querySelector("#sign-up
+  
+  
+   function renderLastRegistered(
+       var aa = localStorage.getItem("email");
+       userEmailSpan.textContent = aa;
+       // console.log(aa);
+   }s
+  
+    signUpButton.addEventListener("click", 
+        function (event) {
+            event.preventDefault();
+            var aa = emailInput.value;
+            // console.log(aa);
+            /* if (aa === "") {
+               
+            } */
+  /*     localStorage.setItem("email", aa);
+      renderLastRegistered();
+  });
+*/
+
 });
+
+
+// const key = inputKey.value;
+// localStorage.setItem(key);
+// const value = localStorage.getItem(key);
+// lsOutput.innerHTML = '${key}: ${value}<br />'  ;`
