@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)file:///C:/Users/shine/Documents/Dev/Homework6/index.html? -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Document_files/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .navbar-brand {
+            margin: 0 auto;
+        }
+        .form-inline {
+            padding : 0px 0px 5px 0px;
+        }
+        .col-md-3 {
+            padding:20px;
+        }
+        .list-group {
+            width :230px;
+            margin : 0 0 0 0px;
+        }
+        .card {
+            margin:20px 0px 20px 0px;
+        }
+        #fiveBoxCss {
+            width: 200px;
+            height:300px;
+            border-radius : 10px;
+            background: rgb(82, 107, 248);
+            display: inline-block;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">    
+        
+        <nav class="col-md-12 navbar navbar-light bg-dark">
+                <a class="navbar-brand text-white"><h1>Weather Dashboard</h1></a>
+            </nav>
+
+        <div class="row">
+<!-- Sidebar -->
+            <div class="col-md-3 bg-light"><h4>Search for a City:</h4>
+                <form class="form-inline my-3 my-lg-0">
+;                        <button class="btn btn-primary my-2 my-sm-0" type="submit" id="searchBtn">Search</button>
+                </form>   
+                <div class="card" style="width: 8rem;">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">.</li>
+
+                      </ul>
+                    </div>
+            </div>            
+
+<!-- Page content -->
+            <div class="col-md-9 bg-info">
+                
+                    <div class="card">
+                            <h3 class="card-header" id="city">City : </h3>
+                            <div class="card-body">
+                              <!-- <h5 class="card-title">Special title treatment</h5> -->
+                              <p class="card-text">Temperature :  <span id="temp"></span> </p>
+                              <p class="card-text">Humidity :  <span id="humidity"></span></p>
+                              <p class="card-text">Wind Speed :  <span id="wind"></span> </p>
+                              <p class="card-text">UV Index :  <span id="uv"> </span></p>
+                              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                            </div>
+                    </div>                
+
+                    <h4>5-Day Forecast:</h4>
+                    <div class="fiveBox"></div>
+<!--                     <div class="col-md-3">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 16rem;">
+                        <div class="card-header" id="date"><h5>Date</h5></div>
+                        <div class="card-body">
+                          <h5 class="card-title" id="icon">icon</h5>
+                          <p class="card-text">Temp:  <span id="tempCard"></span></p>
+                          <p class="card-text">Humidity:  <span id="humidityCard"></span></p>
+                        </div>
+                      </div>
+                    </div> -->
+
+                </div>
+
+            </div>
+        </div>
+    
+
+    <script src="./Document_files/jquery.min.js.download" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="./Document_files/popper.min.js.download" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="./Document_files/bootstrap.min.js.download" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script text="text/javascript">
+
+$(document).ready(function(){
+    
+    $("#searchBtn").on("click",
+        function(){ 
+        event.preventDefault();
+
+        // 아이디 자리에 입력된 value로 뭘 찾을것이다
+        var city = $("#search").val();
+        // console.log(city);
+
+        // 키와 주소를 준다
+        var APIKey = "9cb57c03913866531529917ca50d9aef";
+        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
+
+        // 가져오라고 명령한다.
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+            
+        // 그리고는 가져오는 답으로 뭘 할것이다.            
+        }).then(function(response) {
+            // console.log("test");            
+            //  $("#temp").text(JSON.stringify(response));
+            console.log(response);
+
+            $("#city").html("<h2>" + response.city.name +"   ("+ response.list[0].dt_txt + ")" + "</h2>");
+            $("#temp").html(response.list[0].main.temp + " (f)");
+            $("#humidity").html(response.list[0].main.humidity + " %");
+            $("#wind").html(response.list[0].wind.speed + " MPH");
+            // $("#uv").html(response.wind.speed);
+
+        for(i = 1; i < 6 ; i++) {
+            var date = moment().add(i, 'days').format("M/D/YYYY");
+              
+            $("<div>"), {
+                html: "<h3>" + date + "</h3>" + "<br>" +
+                      "Temp: " + response.list[i].main.temp + " (f)" + "<br>" +
+                      "Humidity: " + response.list[i].main.humidity + " %",
+                id: "fiveBoxCss",
+                appendTo: ".fiveBox"       
+                }
+            // $("#date").html("<h5>" + response.list[i].dt_txt + "</h5>");
+            // $("#tempCard").html(response.list[i].main.temp + " (f)");
+            // $("#humidityCard").html(response.list[i].main.humidity + " %");            
+            }
+
+        });
+
+    });
+
+    
+//     $.getJSON("http://openweathermap.org/data/2.5/weather?q=London,uk&APPID=9cb57c03913866531529917ca50d9aef", function(data){
+//     console.log(data);
+// });   
+});
+    </script>
+   
+
+</body></html>
